@@ -18,7 +18,7 @@ public class Controller {
 	public static void main(String[] args) {
 		// 启动每天定时离线任务
 		startOfflineService();
-		// 启动在线实时任务
+		// 启动在线实时任务znm
 		startOnlineService();
 	}
 
