@@ -1,14 +1,13 @@
 package com.loc.analyst;
 
-import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
 import com.loc.analyst.predict.offline.PredictCrontab;
+import com.loc.analyst.predict.online.PredictContainer;
 import com.loc.analyst.recommand.offline.RecommandCrontab;
 import com.loc.analyst.util.Constant;
 
@@ -35,6 +34,6 @@ public class Controller {
 
 	private static void startOnlineService() {
 		ExecutorService online_service = Executors.newFixedThreadPool(2);
-		online_service.submit(task);
+		online_service.submit(new PredictContainer());
 	}
 }
