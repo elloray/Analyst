@@ -8,7 +8,7 @@ public class Job extends Thread{
 	public static String[] args = {};
 	@Override
 	public void run(){
-		DisPre.main(args);
+//		DisPre.main(args);
 //		RecommandCrontab.main(args);
 	}
 	public Job(String[] args){
