@@ -1,10 +1,10 @@
 package com.loc.analyst.model;
 
-public class ModelFactory {
+public class ModelFactory{
 	
 	private static ModelFactory factory = new ModelFactory();
 
-	// 单例模式
+	// 单例
 	private ModelFactory() {
 	}
 
@@ -12,5 +12,8 @@ public class ModelFactory {
 		return factory;
 	}
 	
-
+	public Model getHeartDiseaseModel() {
+		return new HeartDiseaseModel();
+	}
+	
 }

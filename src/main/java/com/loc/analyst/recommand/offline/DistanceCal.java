@@ -17,10 +17,5 @@ public class DistanceCal {
 		res = part1 / (Math.sqrt(part2) * Math.sqrt(part3));
 		return res;
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

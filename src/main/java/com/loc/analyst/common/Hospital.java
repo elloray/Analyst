@@ -2,13 +2,13 @@ package com.loc.analyst.common;
 
 public class Hospital {
 	
-	public String hosname;
-	public String city;
-	public String dep;
-	public int docnum;
-	public int professornum;
-	public int papernum;
-	public int honornum;
+	private String hosname;
+	private String city;
+	private String dep;
+	private int docnum;
+	private int professornum;
+	private int papernum; 
+	private int honornum;
 	
 	public int getDocnum() {
 		return docnum;
