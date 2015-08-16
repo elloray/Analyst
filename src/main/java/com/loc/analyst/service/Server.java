@@ -1,18 +1,25 @@
 package com.loc.analyst.service;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 
+import com.loc.analyst.crontab.Job;
 import com.loc.analyst.predict.offline.DisPre;
+import com.loc.analyst.predict.offline.PredictCrontab;
+import com.loc.analyst.recommand.offline.RecommandCrontab;
 import com.loc.analyst.util.Constant;
 
 public class Server {
 	public static void main(String[] args) {
 		try {
-			DisPre.main(args);
+			crontab(args);
+			RecommandCrontab.main(args);
 			TProcessor tprocessor = new baymax.Processor(new baymaxImpl());
 			TServerSocket serverTransport = new TServerSocket(
 					Constant.SERVER_PORT);
@@ -25,5 +32,10 @@ public class Server {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public static void crontab(String[] args){
+		ScheduledExecutorService offline_service = Executors
+				.newScheduledThreadPool(1);
+		offline_service.schedule(new Job(args), 0, Constant.OFFLINE_PERIOD);
 	}
 }

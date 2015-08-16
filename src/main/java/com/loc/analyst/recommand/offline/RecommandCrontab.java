@@ -17,7 +17,7 @@ public class RecommandCrontab {
 
 	public static void main(String[] args) {
 		JavaSparkContext sc = new JavaSparkContext();
-		JavaRDD<String> lines = sc.textFile("/Users/Ray/Desktop/demo.csv");
+		JavaRDD<String> lines = sc.textFile(Constant.HOSINFO_PATH);
 		JavaPairRDD<String, HospitalInfo> kvpair = lines
 				.mapToPair(s -> {
 					String[] tmp = s.split(",");
