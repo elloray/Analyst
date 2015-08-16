@@ -20,7 +20,12 @@ public class baymaxImpl implements baymax.Iface {
 			value[i] = Double.parseDouble(string);
 			i++;
 		}
-		return DisPre.predict(value);
+		if (DisPre.predict(value) < 0) {
+			return "Sick";
+		} else {
+			return "OK";
+		}
+
 	}
 
 	@Override

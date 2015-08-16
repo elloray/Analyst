@@ -53,8 +53,9 @@ public class DisPre {// extends Thread {
 
 	}
 
-	public static void predict(double[] dims) {
+	public static double predict(double[] dims) {
 		System.out.println("结果是：" + model.predict(Vectors.dense(dims)));
+		return  model.predict(Vectors.dense(dims));
 	}
 
 	public static void main(String[] args) {
