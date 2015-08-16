@@ -9,9 +9,9 @@ public class Job extends Thread{
 	@Override
 	public void run(){
 		DisPre.main(args);
-		RecommandCrontab.main(args);
+//		RecommandCrontab.main(args);
 	}
 	public Job(String[] args){
-		this.args = args;
+		Job.args = args;
 	}
 }

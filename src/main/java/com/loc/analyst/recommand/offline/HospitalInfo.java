@@ -1,6 +1,14 @@
 package com.loc.analyst.recommand.offline;
 
-public class HospitalInfo {
+import scala.Serializable;
+
+
+public class HospitalInfo implements Serializable{
+/**
+	 * 
+	 */ 
+	private static final long serialVersionUID = -5563947103560830697L;
+	
 private String name;
 private String city;
 private String doctor_num;

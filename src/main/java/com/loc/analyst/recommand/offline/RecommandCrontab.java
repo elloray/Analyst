@@ -1,5 +1,6 @@
 package com.loc.analyst.recommand.offline;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -13,18 +14,18 @@ import scala.Tuple2;
 
 public class RecommandCrontab {
 
-	public static HashMap<String, HospitalInfo> hosMap = new HashMap<String, HospitalInfo>();
+	public static HashMap<String, ArrayList<HospitalInfo>> hosMap = new HashMap();
 
-	public static void main(String[] args) {
-		JavaSparkContext sc = new JavaSparkContext();
+	public static void main(String[] args,JavaSparkContext sc) {
+//		JavaSparkContext sc = new JavaSparkContext();
 		JavaRDD<String> lines = sc.textFile(Constant.HOSINFO_PATH);
 		JavaPairRDD<String, HospitalInfo> kvpair = lines
 				.mapToPair(s -> {
 					String[] tmp = s.split(",");
-					String s0 = tmp[1].trim();
+					String s0 = tmp[0].trim();
 					String s1 = tmp[8].trim();
 					String s2 = tmp[23].trim();
-					String s3 = tmp[24].trim().split("/")[1];
+					String s3 = tmp[24];
 					int prof_num = 0;
 					if (s3.contains("教授")) {
 						prof_num = 1;
@@ -32,7 +33,7 @@ public class RecommandCrontab {
 					Random random = new Random();
 					String paper_num = Integer.toString(random.nextInt(90) + 10);
 					String honor_num = Integer.toString(random.nextInt(30));
-					return new Tuple2<String, HospitalInfo>(s1,
+					return new Tuple2<String, HospitalInfo>(s0,
 							new HospitalInfo(s0, s1, "1", Integer
 									.toString(prof_num), paper_num, honor_num));
 				});
@@ -46,10 +47,14 @@ public class RecommandCrontab {
 							s2.getHonor_num()));
 					return hos;
 				});
-		for (int i = 0; i < Constant.PROV_NUM; i++) {
+		
+		for (int i = 0; i < Constant.HOS_NUM; i++) {
 			if (result.lookup(Integer.toString(i)).size() != 0) {
-				hosMap.put(Integer.toString(i),
-						result.lookup(Integer.toString(i)).get(0));
+				if(hosMap.get(result.lookup(Integer.toString(i)).get(0).getCity()) == null){
+					hosMap.put(result.lookup(Integer.toString(i)).get(0).getCity(),new ArrayList<HospitalInfo>());
+				}else{
+					hosMap.get(result.lookup(Integer.toString(i)).get(0).getCity()).add(result.lookup(Integer.toString(i)).get(0));
+				}
 			}
 
 		}

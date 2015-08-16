@@ -25,8 +25,8 @@ public class DisPre {// extends Thread {
 	private static SVMModel model = null;
 
 	public static void train(String path) {
-		sparkConf = new SparkConf().setAppName("Classification");
-		sc = new JavaSparkContext(sparkConf);
+//		sparkConf = new SparkConf().setAppName("Classification");
+//		 sc = new JavaSparkContext(sparkConf);
 		// SVMModel model = null;
 		JavaRDD<String> data = sc.textFile(path);
 		JavaRDD<LabeledPoint> parsedData = data.map(
@@ -55,10 +55,11 @@ public class DisPre {// extends Thread {
 
 	public static double predict(double[] dims) {
 		System.out.println("结果是：" + model.predict(Vectors.dense(dims)));
-		return  model.predict(Vectors.dense(dims));
+		return model.predict(Vectors.dense(dims));
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args, JavaSparkContext sc) {
+		DisPre.sc = sc;
 		train(Constant.HEARTMAP_PATH);
 		double[] p = { 60, 166, 98, 39.8, 1.94, 2.23, 62 };
 		predict(p);

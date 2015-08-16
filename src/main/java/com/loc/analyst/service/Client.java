@@ -21,6 +21,7 @@ public class Client {
 			// 调用服务的 helloVoid 方法
 			String[] p = { "72", "144", "82", "36.0", "1.56", "2.41", "48" };
 			System.out.println(client.isSick(Arrays.asList(p)));
+			System.out.println(client.recommandHospital("1"));
 			transport.close();
 		} catch (TTransportException e) {
 			e.printStackTrace();

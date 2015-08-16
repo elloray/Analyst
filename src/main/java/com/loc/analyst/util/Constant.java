@@ -16,6 +16,8 @@ public class Constant {
 	public final static TimeUnit OFFLINE_PERIOD = TimeUnit.DAYS;
 	// 疾病-科室对应表
 	public final static HashMap<String, String> DISEASE_MAPPING = new HashMap<String, String>();
-	// 医院数量
+	// 省市数量
 	public final static int PROV_NUM = 20;
+	// 医院数量
+	public final static int HOS_NUM = 768;
 }
