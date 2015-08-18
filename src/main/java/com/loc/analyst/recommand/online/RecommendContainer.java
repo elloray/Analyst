@@ -1,27 +1,24 @@
-package com.loc.analyst.recommand.offline;
+package com.loc.analyst.recommand.online;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
-import org.apache.hadoop.hdfs.server.namenode.HostFileManager.EntrySet;
+import com.loc.analyst.common.HospitalInfo;
+import com.loc.analyst.recommand.offline.DistanceCal;
+import com.loc.analyst.recommand.offline.RecommendCrontab;
 
-import com.loc.analyst.common.Hospital;
-
-public class HosRecom {
+public class RecommendContainer {
 	
-	private static final HospitalInfo heart = new HospitalInfo("北京协和医院", "北京", "50",
-			"100", "40", "100");
+	private static final HospitalInfo heart = new HospitalInfo("北京协和医院", "北京", 50,
+			100, 40, 100);
 
-	public static String Recom(String province) {
-		HashMap<String, ArrayList<HospitalInfo>> dataset = RecommandCrontab.hosMap;
+	public static String recommend(String province) {
+		HashMap<String, ArrayList<HospitalInfo>> dataset = RecommendCrontab.hosMap;
 		StringBuffer sb = new StringBuffer();
 		ArrayList<HospitalInfo> hoslist = dataset.get(province);
 		HashMap<String, Double> reslist = new HashMap<String, Double>();

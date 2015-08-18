@@ -1,4 +1,4 @@
-package com.loc.analyst.recommand.offline;
+package com.loc.analyst.common;
 
 import scala.Serializable;
 
@@ -11,12 +11,12 @@ public class HospitalInfo implements Serializable{
 	
 private String name;
 private String city;
-private String doctor_num;
-private String prof_num;
-private String paper_num = "";
-private String honor_num = "";
+private int doctor_num;
+private int prof_num;
+private int paper_num;
+private int honor_num;
 
-public HospitalInfo(String name,String city,String doctor_num,String prof_num, String paper_num,String honor_num){
+public HospitalInfo(String name,String city,int doctor_num,int prof_num, int paper_num,int honor_num){
 	this.name = name;
 	this.city = city;
 	this.doctor_num = doctor_num;
@@ -31,28 +31,28 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
-public String getDoctor_num() {
+public int getDoctor_num() {
 	return doctor_num;
 }
-public void setDoctor_num(String doctor_num) {
+public void setDoctor_num(int doctor_num) {
 	this.doctor_num = doctor_num;
 }
-public String getProf_num() {
+public int getProf_num() {
 	return prof_num;
 }
-public void setProf_num(String prof_num) {
+public void setProf_num(int prof_num) {
 	this.prof_num = prof_num;
 }
-public String getPaper_num() {
+public int getPaper_num() {
 	return paper_num;
 }
-public void setPaper_num(String paper_num) {
+public void setPaper_num(int paper_num) {
 	this.paper_num = paper_num;
 }
-public String getHonor_num() {
+public int getHonor_num() {
 	return honor_num;
 }
-public void setHonor_num(String honor_num) {
+public void setHonor_num(int honor_num) {
 	this.honor_num = honor_num;
 }
 
