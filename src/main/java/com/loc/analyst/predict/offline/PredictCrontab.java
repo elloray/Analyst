@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -19,6 +20,8 @@ import org.apache.spark.mllib.linalg.*;
 import org.netlib.util.doubleW;
 
 public class PredictCrontab {
+	
+	private static Logger logger = Logger.getLogger(PredictCrontab.class);
 	
 	private static JavaSparkContext sc = null;
 	
@@ -50,7 +53,7 @@ public class PredictCrontab {
 	}
 
 	public static double predict(double[] dims) {
-		System.out.println("结果是：" + model.predict(Vectors.dense(dims)));
+		logger.info("result : " + model.predict(Vectors.dense(dims)));
 		return model.predict(Vectors.dense(dims));
 	}
 

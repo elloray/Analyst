@@ -13,9 +13,9 @@ import com.loc.analyst.recommand.offline.DistanceCal;
 import com.loc.analyst.recommand.offline.RecommendCrontab;
 
 public class RecommendContainer {
-	
-	private static final HospitalInfo heart = new HospitalInfo("北京协和医院", "北京", 50,
-			100, 40, 100);
+
+	private static final HospitalInfo heart = new HospitalInfo("北京协和医院", "北京",
+			50, 100, 40, 100);
 
 	public static String recommend(String province) {
 		HashMap<String, ArrayList<HospitalInfo>> dataset = RecommendCrontab.hosMap;
